@@ -4,16 +4,7 @@ class Review < ApplicationRecord
   belongs_to :user, counter_cache: :review_count
   belongs_to :reviewable, polymorphic: true
 
-  # after_create :add_review_count
-  # after_destroy :subtract_review_count
-
-  # def add_review_count
-  #   user = User.find_by(id: user_id)
-  #   user.update(review_count: user.review_count += 1)
-  # end
-
-  # def subtract_review_count
-  #   user = User.find_by(id: user_id)
-  #   user.update(review_count: user.review_count -= 1)
-  # end
+  validates :title, :body, presence: true
+  validates :title, length: { maximum: 40, too_long: '%{count} characters is the maximum allowed' }
+  validates :title, uniqueness: true
 end
