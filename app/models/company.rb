@@ -5,6 +5,6 @@ class Company < ApplicationRecord
   has_many :games, through: :involved_companies
   has_many :reviews, as: :reviewable
 
-  validations :name, :country, presence: true
-  validations :name, uniqueness: true
+  validates :name, :country, presence: true
+  validates :name, uniqueness: true
 end
